@@ -17,6 +17,9 @@ jobs:
       # Configure pip to cache dependencies
       PIP_NO_CACHE_DIR: false
 
+      # Make sure package manager does not use virtualenv
+      POETRY_VIRTUALENVS_CREATE: false
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -27,6 +30,11 @@ jobs:
         with:
           python-version: "3.9"
 
+      # Install our dependencies
+      - name: Install dependencies using poetry
+        run: |
+          pip install poetry
+          poetry install
       # We will not run `flake8`, `black`, or `isort` here, as we will use a
       # separate actions. As pre-commit does not support user installs, we set
       # PIP_USER=0 to not do a user install.
