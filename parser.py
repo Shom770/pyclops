@@ -4,7 +4,7 @@ from types import GenericAlias
 class PyclopsParser:
     """Parses the command-line arguments given the annotations of each function."""
 
-    def __init__(self, command_line_args: list) ->  None:
+    def __init__(self, command_line_args: list) -> None:
         self.__args__ = command_line_args
         self.grouping = {}
 
@@ -27,8 +27,6 @@ class PyclopsParser:
         Arguments:
             annotations: a dictionary representing the annotations of the callback function
         """
-        converted_args = {}
-
         for param, annotation in annotations.items():
             if isinstance(annotation, GenericAlias):
                 if len(annotation.__args__) > 1:
